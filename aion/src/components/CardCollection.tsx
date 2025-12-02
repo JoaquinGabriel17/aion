@@ -2,12 +2,12 @@ import React from "react";
 
 interface CardCollectionProps {
   title: string;
-  image: string;
+  images: string[];
   author: string;
   onClick?: () => void;
 }
 
-const CardCollection: React.FC<CardCollectionProps> = ({ title, image, author, onClick }) => {
+const CardCollection: React.FC<CardCollectionProps> = ({ title, images, author, onClick }) => {
   return (
     <div
       onClick={onClick}
@@ -16,7 +16,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({ title, image, author, o
       <div className="h-48 w-full overflow-hidden">
         
                 <img
-          src={image}
+          src={images[0]}
           alt={title}
           className="h-full w-full object-cover hover:scale-105 transition-transform duration-300"
         />

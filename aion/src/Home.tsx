@@ -7,19 +7,19 @@ const collections = [
     id: 1,
     title: "Luz y Sombras",
     author: "Camila Rojas",
-    image: "https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0",
+    images: ["/anuel.jpg", "/caballos.jpg", "/caballos1.jpg"],
   },
   {
     id: 2,
     title: "Retratos Urbanos",
     author: "Juan Pérez",
-    image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e",
+    images: ["/caballos2.jpg", "/jesula.jpg", "/terminator.jpg" ],
   },
   {
     id: 3,
     title: "Naturaleza Viva",
     author: "Lucía Gómez",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+    images: ["/trancas.jpeg", "trancas1.jpeg"]
   },
 ];
 
@@ -36,7 +36,7 @@ const Home: React.FC = () => {
             key={col.id}
             title={col.title}
             author={col.author}
-            image={col.image}
+            images={col.images}
             onClick={() => alert(`Abrir colección: ${col.title}`)}
           />
         ))}
