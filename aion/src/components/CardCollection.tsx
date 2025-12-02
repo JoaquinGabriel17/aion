@@ -11,7 +11,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({ title, image, author, o
   return (
     <div
       onClick={onClick}
-      className="bg-white rounded-2xl shadow-md overflow-hidden active:scale-95 transition-transform cursor-pointer w-full max-w-[320px] border-4 border-indigo-400"
+      className="bg-[#F7F9FC] border-[#7FA1FF] rounded-2xl shadow-md overflow-hidden active:scale-95 transition-transform cursor-pointer w-full max-w-[320px] border-4 "
     >
       <div className="h-48 w-full overflow-hidden">
         
@@ -25,7 +25,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({ title, image, author, o
       </div>
       <div className="p-3">
         <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
-        <p className="text-sm text-gray-500">por {author}</p>
+        <p className="text-sm text-[#FF6D6D]">por {author}</p>
       </div>
     </div>
   );

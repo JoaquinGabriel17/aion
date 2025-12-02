@@ -4,7 +4,7 @@ const About: React.FC = () => {
   return (
     <section className="px-4 py-10 text-center bg-neutral-950 text-white">
       <h2 className="text-3xl font-semibold mb-4 tracking-tight">
-        Sobre <span className="text-indigo-400">Aion</span>
+        Sobre <span className="text-[#FF6D6D]">Aion</span>
       </h2>
 
       <p className="text-neutral-300 leading-relaxed text-sm max-w-md mx-auto mb-6">

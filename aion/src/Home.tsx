@@ -25,9 +25,9 @@ const collections = [
 
 const Home: React.FC = () => {
   return (
-    <main className="min-h-screen bg-black flex flex-col items-center py-6 px-3">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-        
+    <main className="min-h-screen bg-[#F7F9FC] flex flex-col items-center py-6 px-3">
+      <h1 className="text-4xl font-bold text-[#1A1A1A] mb-6 text-center">
+        Aion
       </h1>
 
       <div className="flex flex-col gap-6 w-full items-center">
@@ -40,7 +40,7 @@ const Home: React.FC = () => {
             onClick={() => alert(`Abrir colección: ${col.title}`)}
           />
         ))}
-        <button className="bg-indigo-400 rounded-2xl p-2 font-bold text-gray mb-3">Ver todas las colecciones</button>
+        <button className="bg-[#4A6CF7] rounded-2xl p-3 font-bold text-[#000000] mb-4">Ver todas las colecciones</button>
       </div>
       <About />
     </main>
