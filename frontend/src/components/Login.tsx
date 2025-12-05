@@ -1,22 +1,40 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthContext";
+import axios from "axios";
 
 export default function Login() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuth();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    try {
+      if(!username || !password) return alert("Por favor complete todos los campos");
+      const { data } = await axios.post(`${backendURL}/users/login`, {
+        name: username,
+        password,
+      });
+      sessionStorage.setItem("userData", JSON.stringify(data));
+      login(data);
+      navigate("/");
+      return;
+    } catch (error) {
+      alert("Error al iniciar sesión. Por favor, verifique sus credenciales.");
+      console.error("Login error:", error);
+      return;
+    }
+    
 
-    // Acá hacés la petición al backend
-    console.log({ username, password });
-
-    navigate("/");
+    
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#F7F9FC] px-4">
+    <div className=" flex items-center justify-center bg-[#F7F9FC] px-4">
       <div className="w-full max-w-md bg-[#000000] p-8 rounded-lg shadow-lg">
         <h2 className="text-3xl font-bold mb-6 text-center text-white">Iniciar sesión</h2>
 

@@ -1,28 +1,40 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-export default function Register() {
-  const navigate = useNavigate();
+export default function Register({ onChange }: { onChange: () => void }) {
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
 
-    // Acá hacés POST al backend
-    console.log({ username, password });
 
-    navigate("/login");
+  const handleSubmit = async (e: React.FormEvent) => {
+     e.preventDefault();
+    try {
+      if(!username || !password) return alert("Por favor complete todos los campos");
+      await axios.post(`${backendURL}/users/register`, {
+        name: username,
+        password,
+      });
+      alert("Registro exitoso. Ahora puede iniciar sesión.");
+      onChange();
+      return;
+    } catch (error) {
+      alert("Error al crear la cuenta. Por favor, intente nuevamente.");
+      console.error("Register error:", error);
+      return;
+    }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#F7F9FC] px-4">
-      <div className="w-full max-w-md bg-[#000000] p-8 rounded-lg shadow-lg">
-        <h2 className="text-3xl font-bold mb-6 text-center text-white">Register</h2>
+    <div className="flex items-center justify-center bg-[#F7F9FC] px-4">
+      <div className="w-full  bg-[#000000] p-8 rounded-lg shadow-lg">
+        <h2 className="text-3xl font-bold mb-6 text-center text-white">Registrarse</h2>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-gray-300 mb-1">Username</label>
+            <label className="block text-gray-300 mb-1">Nombre de usuario</label>
             <input
               type="text"
               className="w-full p-2 rounded bg-gray-700 text-white outline-none focus:ring-2 focus:ring-blue-500"
@@ -32,7 +44,7 @@ export default function Register() {
           </div>
 
           <div>
-            <label className="block text-gray-300 mb-1">Password</label>
+            <label className="block text-gray-300 mb-1">Contraseña</label>
             <input
               type="password"
               className="w-full p-2 rounded bg-gray-700 text-white outline-none focus:ring-2 focus:ring-blue-500"
@@ -43,21 +55,21 @@ export default function Register() {
 
           <button
             type="submit"
-            className="w-full py-2 bg-green-600 hover:bg-green-700 text-white font-semibold rounded"
+            className="w-full py-2 bg-blue-600 text-white font-semibold rounded"
           >
-            Register
+            Registrarse
           </button>
         </form>
 
-        <p className="text-center text-gray-400 mt-4">
-          Already have an account?{" "}
+        {/*<p className="text-center text-gray-400 mt-4">
+          ¿Ya tienes una cuenta?{" "}
           <span
             onClick={() => navigate("/login")}
             className="text-blue-400 hover:underline cursor-pointer"
           >
-            Login
+            Iniciar sesión
           </span>
-        </p>
+        </p>*/}
       </div>
     </div>
   );
