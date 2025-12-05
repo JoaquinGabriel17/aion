@@ -1,0 +1,3 @@
+import axios from "axios";
+
+// OBTENER TODAS LAS COLECCIONES Y GUARDARLAS CON REACT QUERY
